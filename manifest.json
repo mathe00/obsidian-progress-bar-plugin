@@ -1,0 +1,9 @@
+{
+  "id": "interactive-progress-bar-plugin",
+  "name": "Interactive Progress Bar Plugin",
+  "version": "1.1.0",
+  "minAppVersion": "0.12.0",
+  "description": "A plugin to add interactive progress bars in notes with increment buttons.",
+  "author": "Random",
+  "isDesktopOnly": false
+}
