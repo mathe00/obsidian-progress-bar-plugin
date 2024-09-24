@@ -19,7 +19,18 @@ Interactive progress bars can be a great visual tool to track daily habits, goal
 - **Track your daily water intake**: Like I do! I use this plugin to track how much water I drink each day. Each time I finish a glass, I click the bar, and it increments. It's a great visual reminder to stay hydrated. 💧
   
   _Here’s what it looks like in action:_  
-  _[Insert your screenshot here]_  
+![image](https://github.com/user-attachments/assets/bb4cc07b-0359-4d2a-b698-636cb8a1672d)
+
+With this source code :
+
+```progress-bar
+name: BlueWater
+initialProgress: 0
+total: 3000
+color: #0055ff
+increment: 50
+legend: Water drunk today {current_progress}ml/{total}ml
+```
 
 - **Monitor your reading goals**: Keep track of how many chapters or pages you've read in a book or study material. 📚
   
