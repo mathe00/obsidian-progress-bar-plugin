@@ -27,8 +27,10 @@ That’s it! The plugin should now be active, and you can start using it to add 
 
 ## 🛠️ Contributing
 
-Let’s be honest, **I’m not a JavaScript expert** (nor TypeScript, for that matter 😅), but I’ve done my best to make this plugin functional. It does what I need, so I don’t plan to take it much further. However, if you want to add features or improve the code, I’d be happy to see contributions!
+Let’s be honest, **I’m not a JavaScript expert** (nor TypeScript, for that matter 😅), but I’ve done my best to make this plugin functional. **I’m a Python developer**, so I understand what I’m doing to some extent, but JS and TS are different worlds for me. This plugin does what I need, so I don’t plan to take it much further. However, if you want to add features or improve the code, I’d be happy to see contributions!
 
-Feel free to open issues or pull requests, and I’ll do my best to respond, although **GitHub is not my strong suit yet**.
+Oh, and **English isn’t my first language**, so I apologize if I misunderstand something or take a bit longer to respond to issues or pull requests 😅. Thanks for your patience!
 
-In the meantime, you can also check out my other plugins that I’ve developed solo with **GPT’s** help. They’re all on my GitHub profile!
+Feel free to open issues or pull requests, and I’ll do my best to respond, though **GitHub is still somewhat new to me**.
+
+In the meantime, you can also check out my other plugins that I’ve developed solo with **ChatGPT’s** help. They’re all available on my GitHub profile!
