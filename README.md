@@ -62,3 +62,7 @@ Let’s be honest, **I’m not a JavaScript expert** (nor TypeScript, for that m
 Oh, and **English isn’t my first language**, so I apologize if I misunderstand something or take a bit longer to respond to issues or pull requests 😅. Thanks for your patience!
 
 Feel free to open issues or pull requests, and I’ll do my best to respond, though **GitHub is still somewhat new to me**.
+
+## ⭐ Show Your Support
+
+I’m not really concerned about the number of stars, but if you find this project useful or interesting, consider giving it a star on GitHub to help me gauge the interest. If you’d rather not leave a star, that’s totally fine – feel free to open an issue, submit a pull request, or even drop a message of support in an issue instead! All kinds of feedback, advice, and contributions are always welcome and appreciated. 😊
