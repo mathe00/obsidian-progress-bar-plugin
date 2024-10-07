@@ -26,7 +26,7 @@ class InteractiveProgressBarPlugin extends Plugin {
 
         this.addSettingTab(new ProgressBarSettingTab(this.app, this));
 
-        this.clearOldEntries(); // Nettoyer les anciennes entrées chaque jour
+        this.clearOldEntries(); // Clean old entrances every day
     }
 
     async loadSettings() {
@@ -37,9 +37,22 @@ class InteractiveProgressBarPlugin extends Plugin {
         await this.saveData(this.settings);
     }
 
-    getMemoryFilePath() {
-        return path.join(this.app.vault.adapter.basePath, 'progressBarMemory.json');
+    getPluginFolderPath() {
+        // Get the path to the plugin folder inside the vault's .obsidian/plugins directory
+        const pluginFolder = path.join(this.app.vault.configDir, 'plugins', 'progress-bar-plugin');
+    
+        // Create the folder if it doesn't exist
+        if (!fs.existsSync(pluginFolder)) {
+            fs.mkdirSync(pluginFolder, { recursive: true });
+        }
+    
+        return pluginFolder;
     }
+    
+    getMemoryFilePath() {
+        const pluginFolder = this.getPluginFolderPath();
+        return path.join(pluginFolder, 'progressBarMemory.json');
+    }    
 
     loadMemoryData() {
         const filePath = this.getMemoryFilePath();
@@ -221,7 +234,7 @@ class ProgressBar extends MarkdownRenderChild {
                 break;
             case 'wave':
                 this.progressBar.style.transition = `width ${this.transitionDuration} ease-in-out`;
-                // Applique l'animation d'onde si activée
+                // Applies wave animation if enabled
                 this.progressBar.style.backgroundImage = `url('data:image/svg+xml;base64,${waveSVG}')`;
                 this.progressBar.style.backgroundSize = '200% 200%';
                 break;
@@ -242,7 +255,7 @@ class ProgressBar extends MarkdownRenderChild {
     initializeProgressBarClick() {
         // Left-click listener added (increment progression)
         this.progressBar.parentElement.addEventListener('click', (event) => {
-            if (event.button === 0) { // 0 correspond au clic gauche
+            if (event.button === 0) { // 0 corresponds to left click
                 this.incrementProgress();
             }
         });
@@ -251,7 +264,7 @@ class ProgressBar extends MarkdownRenderChild {
         if (this.plugin.settings.enableResetOnRightClick) {
             // Ajout d'un écouteur pour le clic droit (réinitialiser la progression)
             this.progressBar.parentElement.addEventListener('contextmenu', (event) => {
-                event.preventDefault(); // Empêche le menu contextuel par défaut
+                event.preventDefault(); // Prevent default context menu
                 this.resetProgress();
             });
         }
