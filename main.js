@@ -88,6 +88,7 @@ class ProgressBar extends MarkdownRenderChild {
         this.plugin = plugin;
         this.notePath = notePath;
         this.progress = 0;
+        this.hasYamlProgress = false;
         this.color = this.plugin.settings.barColor;
         this.backgroundColor = this.plugin.settings.backgroundColor;
         this.increment = 10;
@@ -102,19 +103,31 @@ class ProgressBar extends MarkdownRenderChild {
         this.parseSource(source);
 
         this.loadProgressFromMemory();  // Loading progress from memory
+
+        if (this.hasYamlProgress) {
+            this.saveProgressToMemory();
+        }
     }
 
     parseSource(source) {
-        const params = source.split(/[\n,]+/);  // Support for comma-separated options or new lines
+        const params = source.split(/[\n,]+/);  
         params.forEach(param => {
             const [key, value] = param.split(':').map(str => str.trim());
             if (key === 'initialProgress') {
+                if (!this.hasYamlProgress) {  // Skip if currentProgress set
+                    this.progress = parseInt(value, 10);
+                    this.hasYamlProgress = true;
+                }
+            } else if (key === 'currentProgress') {
                 this.progress = parseInt(value, 10);
+                this.hasYamlProgress = true;
             } else if (key === 'total') {
                 this.total = parseInt(value, 10);
             } else if (key === 'color') {
                 this.color = value;
-            } else if (key === 'backgroundColor') {
+            } else if (key.toLowerCase() === 'BackgroundColor') {
+                this.backgroundColor = value;
+            } else if (key.toLowerCase() === 'background') {
                 this.backgroundColor = value;
             } else if (key === 'increment') {
                 this.increment = parseInt(value, 10);
@@ -131,13 +144,18 @@ class ProgressBar extends MarkdownRenderChild {
             } else if (key === 'legendFontSize') {
                 this.legendFontSize = value;
             } else if (key === 'name') {
-                this.name = value.replace(/[^a-zA-Z]/g, '');  // Filter non-alphabetic characters
+                this.name = value.replace(/[^a-zA-Z]/g, '');  
             }
         });
 
         if (!this.name) {
             console.error('The name field is required and must be alphabetic.');
             this.name = `bar-${Math.random().toString(36).substr(2, 5)}`;
+        }
+
+        // Fallback if no total in YAML
+        if (typeof this.total === 'undefined') {
+            this.total = this.plugin.settings.total;
         }
     }
 
@@ -146,9 +164,9 @@ class ProgressBar extends MarkdownRenderChild {
         const today = new Date().toISOString().slice(0, 10);
         const memoryKey = `${this.notePath}-${this.name}`;
 
-        if (data[memoryKey] && data[memoryKey].date === today) {
+        if (!this.hasYamlProgress && data[memoryKey] && data[memoryKey].date === today) {
             this.progress = data[memoryKey].progress;
-        } else {
+        } else if (!this.hasYamlProgress) {
             this.progress = 0;
         }
     }
@@ -473,7 +491,6 @@ animation: smooth
 }
 
 module.exports = InteractiveProgressBarPlugin;
-
 // Add wave animation keyframes
 const style = document.createElement('style');
 style.innerHTML = `
