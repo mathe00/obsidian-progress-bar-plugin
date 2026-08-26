@@ -46,14 +46,31 @@ The flexibility of this plugin allows you to easily adjust the bar's settings to
 
 To install and try out the **Obsidian Interactive Progress Bar Plugin**, follow these steps:
 
-1. Download the `main.js` and `manifest.json` files from this repository.
+1. Download `main.js`, `styles.css` and `manifest.json` from the [latest release](https://github.com/mathe00/obsidian-progress-bar-plugin/releases).
 2. Create a new folder in your Obsidian vault under the path:  
    `<your-vault>/.obsidian/plugins/interactive-progress-bar-plugin/`
-3. Place the downloaded `main.js` and `manifest.json` files into this folder.
+3. Place the downloaded files into this folder.
 4. Restart Obsidian.
 5. Go to **Settings** > **Community plugins** and enable the **Interactive Progress Bar Plugin**.
 
 That’s it! The plugin should now be active, and you can start using it to add progress bars to your notes.
+
+## 🧑‍💻 Development
+
+The plugin is written in TypeScript with a strict toolchain (ESLint + Prettier + Vitest) and bundled with esbuild.
+
+Prerequisites: [Bun](https://bun.sh).
+
+```bash
+bun install        # install dependencies
+bun run dev        # watch mode (rebuilds main.js and styles.css on change)
+bun run check      # typecheck + lint + format check + tests + production build
+```
+
+Individual steps: `bun run typecheck`, `bun run lint`, `bun run format`, `bun run test`.
+
+> The compiled `main.js` is generated locally by the build and is not committed
+> to the repository - releases carry the distributable files.
 
 ## 🛠️ Contributing
 

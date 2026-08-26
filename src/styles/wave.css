@@ -1,0 +1,11 @@
+/* Wave animation applied to progress bars using the "wave" animation mode.
+ * Loaded automatically by Obsidian via the generated root styles.css. */
+
+@keyframes wave-animation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
